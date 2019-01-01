@@ -1,0 +1,2 @@
+export PORT = 8000
+export MONGO_URL = "'mongodb://<user>:<password>@serverx.com:45584/zgk-k8s-app-back'"
