@@ -2,13 +2,13 @@
 
 const Hapi = require('hapi');
 const mongoose = require('mongoose');
-const { MONGO_URL, PORT } = process.env;
+const { MONGO_URL } = process.env;
+console.log('MONGO_URL: ', MONGO_URL);
 const server = Hapi.server({
-    host: 'localhost',
-    port: PORT
+    host: '0.0.0.0',
+    port: 8000
 });
 
-// Start the server
 const start = async function () {
 
     try {
@@ -33,9 +33,18 @@ const start = async function () {
             path: '/users',
             handler: async (req, h) => {
 
-                const users = await User.find();
-                console.log('users: ', users);
-                return users;
+                try {
+
+                    console.log('GET /users');
+                    const users = await User.find();
+                    console.log('users: ', users);
+                    return users;
+
+                } catch (err) {
+
+                    console.error('Error on GET /users ', err.message);
+
+                }
 
             }
         });
@@ -51,10 +60,19 @@ const start = async function () {
             path: '/users',
             handler: async (req, h) => {
 
-                const newUser = new User(req.payload);
-                await newUser.save();
-                console.log('newUser: ', newUser);
-                return newUser;
+                try {
+
+                    console.error('Error on POST /users ', err.message);
+                    const newUser = new User(req.payload);
+                    await newUser.save();
+                    console.log('newUser: ', newUser);
+                    return newUser;
+
+                } catch (err) {
+
+                    console.error('Error on POST /users ', err.message);
+
+                }
 
             }
         });
@@ -70,9 +88,18 @@ const start = async function () {
             path: '/plans',
             handler: async (req, h) => {
 
-                const plans = await Plan.find();
-                console.log('plans: ', plans);
-                return plans;
+                try {
+
+                    console.error('GET /plans ', err.message);
+                    const plans = await Plan.find();
+                    console.log('plans: ', plans);
+                    return plans;
+
+                } catch (err) {
+
+                    console.error('Error on GET /plans ', err.message);
+
+                }
 
             }
         });
@@ -88,10 +115,19 @@ const start = async function () {
             path: '/plans',
             handler: async (req, h) => {
 
-                const newPlan = new Plan(req.payload);
-                await newPlan.save();
-                console.log('newPlan: ', newPlan);
-                return newPlan;
+                try {
+
+                    console.error('POST /plans ', err.message);
+                    const newPlan = new Plan(req.payload);
+                    await newPlan.save();
+                    console.log('newPlan: ', newPlan);
+                    return newPlan;
+
+                } catch (err) {
+
+                    console.error('Error on POST /plans ', err.message);
+
+                }
 
             }
         });
