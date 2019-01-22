@@ -1,6 +1,7 @@
 'use strict';
 
 const { badImplementation, serverUnavailable } = require('boom');
+const fs = require('fs');
 const Hapi = require('hapi');
 const mongoose = require('mongoose');
 const { MONGO_URL } = process.env;
@@ -45,9 +46,9 @@ const start = async function () {
                 try {
 
                     if (!livenessTest) {
-                        
+
                         return badImplementation();
-                        
+
                     }
 
                     if (readinessTest < 100) {
@@ -83,9 +84,9 @@ const start = async function () {
                 try {
 
                     if (!livenessTest) {
-                        
+
                         return badImplementation();
-                        
+
                     }
 
                     return 'ok';
@@ -114,9 +115,9 @@ const start = async function () {
                 try {
 
                     if (!livenessTest) {
-                        
+
                         return badImplementation();
-                        
+
                     }
 
                     livenessTest = false;
@@ -147,9 +148,9 @@ const start = async function () {
                 try {
 
                     if (!livenessTest) {
-                        
+
                         return badImplementation();
-                        
+
                     }
 
                     console.log('GET /users');
@@ -181,7 +182,7 @@ const start = async function () {
                 try {
 
                     if (!livenessTest) {
-                        
+
                         return badImplementation();
 
                     }
@@ -216,12 +217,11 @@ const start = async function () {
                 try {
 
                     if (!livenessTest) {
-                        
+
                         return badImplementation();
                         throw error;
                     }
 
-                    console.error('GET /plans ', err.message);
                     const plans = await Plan.find();
                     console.log('plans: ', plans);
                     return plans;
@@ -250,14 +250,14 @@ const start = async function () {
                 try {
 
                     if (!livenessTest) {
-                        
+
                         return badImplementation();
                         throw error;
                     }
 
-                    console.error('POST /plans ', err.message);
                     const newPlan = new Plan(req.payload);
                     await newPlan.save();
+                    await fs.writeFileSync(`files_plans/${newPlan._id}.txt`, JSON.stringify(newPlan));
                     console.log('newPlan: ', newPlan);
                     return newPlan;
 
