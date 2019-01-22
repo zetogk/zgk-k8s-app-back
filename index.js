@@ -33,7 +33,7 @@ const start = async function () {
         });
 
         server.route({
-            config: {
+            options: {
                 cors: {
                     origin: ['*'],
                     additionalHeaders: ['cache-control', 'x-requested-with']
@@ -71,7 +71,7 @@ const start = async function () {
         });
 
         server.route({
-            config: {
+            options: {
                 cors: {
                     origin: ['*'],
                     additionalHeaders: ['cache-control', 'x-requested-with']
@@ -102,7 +102,7 @@ const start = async function () {
         });
 
         server.route({
-            config: {
+            options: {
                 cors: {
                     origin: ['*'],
                     additionalHeaders: ['cache-control', 'x-requested-with']
@@ -135,7 +135,7 @@ const start = async function () {
         });
 
         server.route({
-            config: {
+            options: {
                 cors: {
                     origin: ['*'],
                     additionalHeaders: ['cache-control', 'x-requested-with']
@@ -169,7 +169,7 @@ const start = async function () {
         });
 
         server.route({
-            config: {
+            options: {
                 cors: {
                     origin: ['*'],
                     additionalHeaders: ['cache-control', 'x-requested-with']
@@ -204,7 +204,7 @@ const start = async function () {
         });
 
         server.route({
-            config: {
+            options: {
                 cors: {
                     origin: ['*'],
                     additionalHeaders: ['cache-control', 'x-requested-with']
@@ -237,7 +237,7 @@ const start = async function () {
         });
 
         server.route({
-            config: {
+            options: {
                 cors: {
                     origin: ['*'],
                     additionalHeaders: ['cache-control', 'x-requested-with']
