@@ -279,7 +279,7 @@ const start = async function () {
         process.exit(1);
     }
 
-    console.log('Server running the v2 at:', server.info.uri);
+    console.log('Server running the v3 at:', server.info.uri);
 };
 
 start();
